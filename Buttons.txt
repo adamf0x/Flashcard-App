@@ -1,0 +1,39 @@
+MainActivity activity - buttons:
+view button -> viewFlashCards activity
+edit button -> editCategory activity
+create button -> createCategory activity
+
+
+createFlashCard activity - buttons:
+back button -> MainActivity activity
+create another button -> createFlashCard activity (reloads the same activity)
+
+
+editCategory activity - buttons:
+delete button -> (deletes the current category and returns to MainActivity)
+rename button -> (renames the current category and returns to MainActivity)
+
+
+viewFlashCard activity - buttons:
+edit button -> editCategory activity
+study button -> studyFlashCard activity
+
+
+studyFlashCardQuestion activity - buttons:
+edit this card button -> editFlashcardQuestion activity
+next button -> (next flash card/image viewer switch?)
+flip button -> (flips card/image viewer switch)
+
+
+editFlashcardQuestion activity - buttons:
+delete button -> deletes flashcard and returns to mainactivity
+flip button -> editFlashcardAnswer acitivty
+
+
+editFlashcardAnswer activity - buttons:
+go back -> editFlashcardQuestion acvitity
+done -> MainActivity activity
+
+
+createCategory activity - buttons:
+create button -> (creates flashcard and returns to MainActivity)
