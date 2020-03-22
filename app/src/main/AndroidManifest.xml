@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".createCategory" />
+        <activity android:name=".editFlashcardAnswer" />
+        <activity android:name=".editFlashcardQuestion" />
+        <activity android:name=".studyFlashCardQuestion" />
+        <activity android:name=".viewFlashCards" />
+        <activity android:name=".editCategory" />
+        <activity android:name=".createFlashCard" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
