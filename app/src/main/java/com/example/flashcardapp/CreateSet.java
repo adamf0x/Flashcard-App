@@ -14,14 +14,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class CreateSet extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create_set);
         ArrayList<String> categories = new ArrayList<>();
-
         try{
             FileInputStream fis = openFileInput("categories.txt");
             InputStreamReader isr = new InputStreamReader(fis);
@@ -47,24 +46,11 @@ public class MainActivity extends AppCompatActivity {
         sItems.setAdapter(adapter);
     }
 
-    public void viewCategory(View view) {
-        Spinner cat = findViewById(R.id.category);
-        String selectedCat = cat.getSelectedItem().toString();
-
-        Intent intent = new Intent(this, viewFlashCards.class);
-        Bundle bundle = new Bundle();
-
-        bundle.putString("category", selectedCat);
-        intent.putExtras(bundle);
-        startActivity(intent);
+    public void done(View view) {
     }
 
-    public void editCategory(View view) {
-    }
-
-    public void createCategory(View view) {
-        Intent intent = new Intent(this,createCategory.class);
+    public void home(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
-
     }
 }
