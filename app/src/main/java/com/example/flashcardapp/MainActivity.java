@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         Spinner cat = findViewById(R.id.category);
         String selectedCat = cat.getSelectedItem().toString();
 
-        Intent intent = new Intent(this, viewFlashCards.class);
+        Intent intent = new Intent(this, SelectSet.class);
         Bundle bundle = new Bundle();
 
         bundle.putString("category", selectedCat);
