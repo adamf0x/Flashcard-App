@@ -56,6 +56,9 @@ public class CreateSet extends AppCompatActivity {
             e.printStackTrace();
         }
         Intent intent = new Intent(this,SelectSet.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("category", value);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
