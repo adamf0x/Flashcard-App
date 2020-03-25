@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectSet"></activity>
+        <activity android:name=".SelectSet" />
         <activity android:name=".CreateSet" />
         <activity
             android:name=".createCategory"

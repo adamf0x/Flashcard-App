@@ -74,6 +74,18 @@ public class SelectSet extends AppCompatActivity {
     }
 
     public void studySet(View view) {
+        TextView category = findViewById(R.id.textView22);
+        Spinner set = findViewById(R.id.spinner4);
+        String selectedSet = set.getSelectedItem().toString();
+
+        Intent intent = new Intent(this, studyFlashCardQuestion.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("category", category.getText().toString());
+        bundle.putString("set", selectedSet);
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+
     }
 
     public void deleteSet(View view) {
