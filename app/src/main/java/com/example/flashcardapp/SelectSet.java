@@ -25,12 +25,39 @@ public class SelectSet extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String value = "";
+        ArrayList<String> sets = new ArrayList<String>();
         if (extras != null) {
             value = extras.getString("category");
         }
         System.out.println(value);
         TextView category = findViewById(R.id.textView22);
         category.setText(value);
+
+        try{
+            FileInputStream fis = openFileInput("sets.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            String line = br.readLine();
+            while(line != null) {
+                if(line.contains(value)) {
+                    sets.add(line);
+                }
+                line = br.readLine();
+            }
+            br.close();
+            isr.close();
+            fis.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, sets);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner) findViewById(R.id.spinner4);
+        sItems.setAdapter(adapter);
     }
 
     public void createSet(View view) {
