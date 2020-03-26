@@ -46,6 +46,18 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.143" />
+
+    <TextView
         android:id="@+id/categoryReplace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,6 +68,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
+
+    <TextView
+        android:id="@+id/categoryReplace2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='"replace with set"'
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.143" />
 
     <TextView
         android:id="@+id/textView8"
@@ -86,7 +110,7 @@
         android:layout_width="147dp"
         android:layout_height="50dp"
         android:onClick="makeAnother"
-        android:text="Make Another"
+        android:text="Make Another/Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.939"
@@ -99,6 +123,7 @@
         android:layout_width="147dp"
         android:layout_height="50dp"
         android:text="Back"
+        android:onClick="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"

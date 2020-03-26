@@ -16,6 +16,8 @@ import java.util.ArrayList;
 public class studyFlashCardQuestion extends AppCompatActivity {
     String value = "";
     String set = "";
+    ArrayList<String>questions = new ArrayList<>();
+    ArrayList<String>answers = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,6 @@ public class studyFlashCardQuestion extends AppCompatActivity {
         TextView category = findViewById(R.id.replaceCategory2);
         category.setText(value);
 
-        ArrayList<String> questions = new ArrayList<String>();
         try{
             FileInputStream fis = openFileInput("questions.txt");
             InputStreamReader isr = new InputStreamReader(fis);
@@ -39,7 +40,9 @@ public class studyFlashCardQuestion extends AppCompatActivity {
             String line = br.readLine();
             while(line != null) {
                 if(line.contains(value) && line.contains(set)) {
-                    questions.add(line);
+                    String[] qarray = line.split(",");
+                    questions.add(qarray[3]);
+                    answers.add(qarray[4]);
                 }
                 line = br.readLine();
             }
@@ -64,5 +67,10 @@ public class studyFlashCardQuestion extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivity(intent);
 
+    }
+
+    public void home(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
