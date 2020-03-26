@@ -53,12 +53,12 @@ public class createFlashCard extends AppCompatActivity {
             outputStream= openFileOutput(filename, Context.MODE_APPEND);
             outputStream.write(fileContents.getBytes());
             outputStream.close();
-            Toast toast = Toast.makeText(getApplicationContext(), "Flashcard created.", Toast.LENGTH_SHORT);
-            toast.show();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        Toast toast = Toast.makeText(getApplicationContext(), "Flashcard created.", Toast.LENGTH_SHORT);
+        toast.show();
         question.setText("");
         answer.setText("");
     }
