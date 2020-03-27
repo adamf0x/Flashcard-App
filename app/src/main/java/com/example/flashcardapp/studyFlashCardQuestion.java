@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class studyFlashCardQuestion extends AppCompatActivity {
     int qnum = 0;
+    int ansnum = 0;
     String value = "";
     String set = "";
     ArrayList<String>questions = new ArrayList<>();
@@ -45,7 +46,7 @@ public class studyFlashCardQuestion extends AppCompatActivity {
                 if(line.contains(value) && line.contains(set)) {
                     String[] qarray = line.split(",");
                     questions.add(qarray[3]);
-                    answers.add(qarray[4]);
+                    answers.add(qarray[4].replace("}", ""));
                 }
                 line = br.readLine();
             }
@@ -92,5 +93,17 @@ public class studyFlashCardQuestion extends AppCompatActivity {
         TextView questionText = findViewById(R.id.textView26);
         qnum = (qnum+1)%questions.size();
         questionText.setText(questions.get(qnum));
+    }
+
+    public void flipCard(View view) {
+        TextView questionText = findViewById(R.id.textView26);
+        if(questionText.getText().equals(questions.get(qnum))) {
+            TextView answerText = findViewById(R.id.textView26);
+            ansnum = qnum;
+            answerText.setText(answers.get(ansnum));
+        }
+        else{
+            questionText.setText(questions.get(qnum));
+        }
     }
 }

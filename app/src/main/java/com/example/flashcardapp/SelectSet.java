@@ -40,7 +40,8 @@ public class SelectSet extends AppCompatActivity {
             String line = br.readLine();
             while(line != null) {
                 if(line.contains(value)) {
-                    sets.add(line);
+                    String[] catSets = line.split(",");
+                    sets.add(catSets[1]);
                 }
                 line = br.readLine();
             }
