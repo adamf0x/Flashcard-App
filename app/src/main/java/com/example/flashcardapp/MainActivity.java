@@ -59,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void editCategory(View view) {
+        Spinner cat = findViewById(R.id.category);
+        String selectedCat = cat.getSelectedItem().toString();
+        Intent intent = new Intent(this,editCategory.class);
+        intent.putExtra("category", selectedCat);
+        startActivity(intent);
     }
 
     public void createCategory(View view) {

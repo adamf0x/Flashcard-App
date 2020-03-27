@@ -61,7 +61,7 @@ public class studyFlashCardQuestion extends AppCompatActivity {
             questionText.setText(questions.get(qnum));
         }
         else {
-            questionText.setText("Create some questions for this set to begin sutdying!");
+            questionText.setText("Create some questions for this set to begin studying!");
             Toast toast = Toast.makeText(getApplicationContext(), "please create some questions for this set using the create new card button!", Toast.LENGTH_SHORT);
             toast.setDuration(Toast.LENGTH_LONG);
             toast.show();
