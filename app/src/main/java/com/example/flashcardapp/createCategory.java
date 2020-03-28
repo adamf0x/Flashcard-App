@@ -25,7 +25,7 @@ public class createCategory extends AppCompatActivity {
         category = category.toString();
 
         String filename = "categories.txt";
-        String fileContents= category + "\n";
+        String fileContents= "\n" + category; //NOTE: I changed this from (category + "\n") to fix the bug
         FileOutputStream outputStream; //allow a file to be opened for writing
         try {
             outputStream= openFileOutput(filename, Context.MODE_APPEND);
