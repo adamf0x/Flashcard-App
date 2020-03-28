@@ -9,7 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -20,14 +22,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        createFiles(); //Creates .txt files if they don't exist, prevents crashing via filenotfound
         try{
             FileInputStream fis = openFileInput("categories.txt");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             String line = br.readLine();
             while(line != null) {
-                categories.add(line);
+                if(line.length()>0) {
+                    categories.add(line);
+                }
                 line = br.readLine();
             }
             br.close();
@@ -70,5 +74,22 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,createCategory.class);
         startActivity(intent);
 
+    }
+    private void createFiles(){
+        try {
+            FileInputStream in = openFileInput("categories.txt");
+        } catch (FileNotFoundException e) {
+            File file = new File("categories.txt");
+        }
+        try {
+            FileInputStream in = openFileInput("sets.txt");
+        } catch (FileNotFoundException e) {
+            File file = new File("sets.txt");
+        }
+        try {
+            FileInputStream in = openFileInput("flashcards.txt");
+        } catch (FileNotFoundException e) {
+            File file = new File("flashcards.txt");
+        }
     }
 }

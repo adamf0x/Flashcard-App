@@ -90,6 +90,14 @@ public class SelectSet extends AppCompatActivity {
     }
 
     public void deleteSet(View view) {
+        TextView category = findViewById(R.id.textView22);
+        Spinner set = findViewById(R.id.spinner4);
+        String selectedSet = set.getSelectedItem().toString();
+
+        Intent intent = new Intent(this, deleteSet.class);
+        intent.putExtra("set", selectedSet);
+        startActivity(intent);
+
     }
 
     public void home(View view) {
