@@ -26,7 +26,7 @@ public class deleteSet extends AppCompatActivity {
         set = getIntent().getStringExtra("set");
         Button yes = (Button) findViewById(R.id.yes);
         TextView text = (TextView) findViewById(R.id.deleteingSet);
-        text.setText("Deleting set: " + set + " Continue?");
+        text.setText("Deleting set: " + set + "\nContinue?");
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

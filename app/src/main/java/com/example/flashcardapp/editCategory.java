@@ -18,6 +18,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Pattern;
 
 public class editCategory extends AppCompatActivity {
 
@@ -25,8 +26,13 @@ public class editCategory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_category);
-
+        TextView editCat  = findViewById(R.id.editcat);
         Button rename = (Button) findViewById(R.id.renameButton);
+        Bundle bundle = getIntent().getExtras();
+        String cat = bundle.getString("category");
+        System.out.println(cat);
+        editCat.setText(cat);
+
         rename.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +42,7 @@ public class editCategory extends AppCompatActivity {
                 String oldCat = getIntent().getStringExtra("category");
 
                 modifyFile("categories.txt", oldCat, newCat);
-                modifyFile("flashcards.txt", "{" + oldCat, "{" + newCat);
+                modifyFile("flashcards.txt", Pattern.quote("{") + oldCat, Pattern.quote("{") + newCat);
                 modifyFile("sets.txt", oldCat + ",", newCat + ",");
                 Intent intent = new Intent(editCategory.this, MainActivity.class);
                 startActivity(intent);

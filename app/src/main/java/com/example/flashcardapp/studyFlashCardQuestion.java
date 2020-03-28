@@ -72,16 +72,23 @@ public class studyFlashCardQuestion extends AppCompatActivity {
     }
 
     public void edit(View view) {
-        Intent intent = new Intent(this, editFlashcardQuestion.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("category", value);
-        bundle.putString("set", set);
-        bundle.putInt("qnum", qnum);
-        bundle.putInt("ansnum", ansnum);
-        bundle.putStringArrayList("questions", questions);
-        bundle.putStringArrayList("answers", answers);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if(questions.size() >0) {
+            Intent intent = new Intent(this, editFlashcardQuestion.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("category", value);
+            bundle.putString("set", set);
+            bundle.putInt("qnum", qnum);
+            bundle.putInt("ansnum", ansnum);
+            bundle.putStringArrayList("questions", questions);
+            bundle.putStringArrayList("answers", answers);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), "create some flashcards first!", Toast.LENGTH_SHORT);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void createFlash(View view) {
@@ -100,20 +107,33 @@ public class studyFlashCardQuestion extends AppCompatActivity {
     }
 
     public void nextQ(View view) {
-        TextView questionText = findViewById(R.id.textView26);
-        qnum = (qnum+1)%questions.size();
-        questionText.setText(questions.get(qnum));
+        if(questions.size() > 0) {
+            TextView questionText = findViewById(R.id.textView26);
+            qnum = (qnum + 1) % questions.size();
+            questionText.setText(questions.get(qnum));
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), "create some more flashcards first!", Toast.LENGTH_SHORT);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void flipCard(View view) {
-        TextView questionText = findViewById(R.id.textView26);
-        if(questionText.getText().equals(questions.get(qnum))) {
-            TextView answerText = findViewById(R.id.textView26);
-            ansnum = qnum;
-            answerText.setText(answers.get(ansnum));
+        if(answers.size() > 0) {
+            TextView questionText = findViewById(R.id.textView26);
+            if (questionText.getText().equals(questions.get(qnum))) {
+                TextView answerText = findViewById(R.id.textView26);
+                ansnum = qnum;
+                answerText.setText(answers.get(ansnum));
+            } else {
+                questionText.setText(questions.get(qnum));
+            }
         }
         else{
-            questionText.setText(questions.get(qnum));
+            Toast toast = Toast.makeText(getApplicationContext(), "create some flashcards first!", Toast.LENGTH_SHORT);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }
