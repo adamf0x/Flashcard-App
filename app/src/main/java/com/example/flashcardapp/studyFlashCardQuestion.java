@@ -45,8 +45,8 @@ public class studyFlashCardQuestion extends AppCompatActivity {
             while(line != null) {
                 if(line.contains(value) && line.contains(set)) {
                     String[] qarray = line.split(",");
-                    questions.add(qarray[3]);
-                    answers.add(qarray[4].replace("}", ""));
+                    questions.add(qarray[qarray.length-2]);
+                    answers.add(qarray[qarray.length-1].replace("}", ""));
                 }
                 line = br.readLine();
             }
@@ -72,6 +72,16 @@ public class studyFlashCardQuestion extends AppCompatActivity {
     }
 
     public void edit(View view) {
+        Intent intent = new Intent(this, editFlashcardQuestion.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("category", value);
+        bundle.putString("set", set);
+        bundle.putInt("qnum", qnum);
+        bundle.putInt("ansnum", ansnum);
+        bundle.putStringArrayList("questions", questions);
+        bundle.putStringArrayList("answers", answers);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     public void createFlash(View view) {

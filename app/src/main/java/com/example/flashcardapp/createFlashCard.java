@@ -45,7 +45,7 @@ public class createFlashCard extends AppCompatActivity {
             value = extras.getString("category");
             set = extras.getString("set");
         }
-
+        System.out.println("{" + value + "," + set + "," + q + "," + ans + "}");
         String filename = "flashcards.txt";
         String fileContents= "{" + value + "," + set + "," + q + "," + ans + "}\n";
         FileOutputStream outputStream; //allow a file to be opened for writing
