@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -16,7 +17,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class SelectSet extends AppCompatActivity {
-
+    ArrayList<String> sets = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,6 @@ public class SelectSet extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String value = "";
-        ArrayList<String> sets = new ArrayList<String>();
         if (extras != null) {
             value = extras.getString("category");
         }
@@ -75,17 +75,22 @@ public class SelectSet extends AppCompatActivity {
     }
 
     public void studySet(View view) {
-        TextView category = findViewById(R.id.textView22);
-        Spinner set = findViewById(R.id.spinner4);
-        String selectedSet = set.getSelectedItem().toString();
+        if(sets.size() > 0) {
+            TextView category = findViewById(R.id.textView22);
+            Spinner set = findViewById(R.id.spinner4);
+            String selectedSet = set.getSelectedItem().toString();
 
-        Intent intent = new Intent(this, studyFlashCardQuestion.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("category", category.getText().toString());
-        bundle.putString("set", selectedSet);
+            Intent intent = new Intent(this, studyFlashCardQuestion.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("category", category.getText().toString());
+            bundle.putString("set", selectedSet);
 
-        intent.putExtras(bundle);
-        startActivity(intent);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Please create some sets for this category by clicking the create button", Toast.LENGTH_SHORT);
+            toast.show();
+        }
 
     }
 
