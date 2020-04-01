@@ -88,7 +88,7 @@ public class SelectSet extends AppCompatActivity {
             intent.putExtras(bundle);
             startActivity(intent);
         }else{
-            Toast toast = Toast.makeText(getApplicationContext(), "Please create some sets for this category by clicking the create button", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Please create some sets for this category by clicking the create button", Toast.LENGTH_LONG);
             toast.show();
         }
 
@@ -96,11 +96,13 @@ public class SelectSet extends AppCompatActivity {
 
     public void deleteSet(View view) {
         TextView category = findViewById(R.id.textView22);
+        CharSequence cat = category.getText();
         Spinner set = findViewById(R.id.spinner4);
         String selectedSet = set.getSelectedItem().toString();
 
         Intent intent = new Intent(this, deleteSet.class);
         intent.putExtra("set", selectedSet);
+        intent.putExtra("category", cat);
         startActivity(intent);
 
     }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -16,6 +17,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import static com.example.flashcardapp.createCategory.isAlphaNumeric;
 
 public class CreateSet extends AppCompatActivity {
 
@@ -37,6 +40,10 @@ public class CreateSet extends AppCompatActivity {
     public void done(View view) {
         TextView set = findViewById(R.id.editText3);
         CharSequence setDesc = set.getText();
+        if(!isAlphaNumeric(setDesc.toString())){
+            Toast toast = Toast.makeText(getApplicationContext(), "Please only use alphanumeric characters in set name", Toast.LENGTH_SHORT);
+            toast.show();
+        }
 
         Bundle extras = getIntent().getExtras();
         String value = "";

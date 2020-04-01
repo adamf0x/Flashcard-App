@@ -58,11 +58,11 @@ public class editCategory extends AppCompatActivity {
                 String newCat = category.toString();
                 String oldCat = getIntent().getStringExtra("category");
 
-                modifyFile("categories.txt", oldCat, "");
+                deleteUnwantedLine("categories.txt", oldCat);
                 removeEmptyLines("categories.txt");
-                modifyFile("flashcards.txt", "{" + oldCat, "{");
+                deleteUnwantedLine("flashcards.txt", Pattern.quote("{") + oldCat);
                 removeEmptyLines("flashcards.txt");
-                modifyFile("sets.txt", oldCat + ",", ",");
+                deleteUnwantedLine("sets.txt", oldCat + ",");
                 removeEmptyLines("sets.txt");
                 Intent intent = new Intent(editCategory.this, MainActivity.class);
                 startActivity(intent);
@@ -101,6 +101,40 @@ public class editCategory extends AppCompatActivity {
             }
         }
 }
+
+
+    void deleteUnwantedLine(String FILE_NAME, String unwantedLine){
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        try {
+            fis = openFileInput(FILE_NAME);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+            String fileContent = "";
+            while((text = br.readLine()) != null){
+                if(!text.contains(unwantedLine)){
+                    fileContent = fileContent + text + System.lineSeparator();
+                }
+            }
+            fos = openFileOutput(FILE_NAME, 0);
+
+            fos.write(fileContent.getBytes());
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     void removeEmptyLines (String FILE_NAME){
         FileInputStream fis = null;

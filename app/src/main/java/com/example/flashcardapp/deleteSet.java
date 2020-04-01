@@ -18,21 +18,23 @@ import java.util.ArrayList;
 
 public class deleteSet extends AppCompatActivity {
     String set;
+    CharSequence cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Works for deleting from sets.txt, haven't tested for deleting flashcards.txt yet
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_set);
         set = getIntent().getStringExtra("set");
+        cat = getIntent().getCharSequenceExtra("category");
         Button yes = (Button) findViewById(R.id.yes);
         TextView text = (TextView) findViewById(R.id.deleteingSet);
         text.setText("Deleting set: " + set + "\nContinue?");
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteUnwantedLine("sets.txt", set);
+                deleteUnwantedLine("sets.txt", cat.toString()+","+set);
                 deleteUnwantedLine("flashcards.txt", "," + set + ",");
-                Intent intent = new Intent(deleteSet.this, SelectSet.class);
+                Intent intent = new Intent(deleteSet.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -57,7 +59,7 @@ public class deleteSet extends AppCompatActivity {
             String text;
             String fileContent = "";
             while((text = br.readLine()) != null){
-                if(!text.contains(unwantedLine)){
+                if(!text.equals(unwantedLine)){
                     fileContent = fileContent + text + System.lineSeparator();
                 }
             }

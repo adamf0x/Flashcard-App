@@ -59,7 +59,6 @@ public class editFlashcardQuestion extends AppCompatActivity {
         deleteUnwantedLine("flashcards.txt", "{" + category + ","+ set + "," + questions.get(qnum) + "," + answers.get(ansnum) +"}");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
     }
 
     public void back(View view) {
