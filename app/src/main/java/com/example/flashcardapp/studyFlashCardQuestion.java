@@ -136,4 +136,8 @@ public class studyFlashCardQuestion extends AppCompatActivity {
             toast.show();
         }
     }
+
+    public void back(View view) {
+        finish();
+    }
 }
