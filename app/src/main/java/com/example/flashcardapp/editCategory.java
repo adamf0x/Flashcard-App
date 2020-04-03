@@ -1,8 +1,10 @@
 package com.example.flashcardapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -53,19 +55,27 @@ public class editCategory extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView catName = findViewById(R.id.editcat);
-                CharSequence category = catName.getText();
-                String newCat = category.toString();
-                String oldCat = getIntent().getStringExtra("category");
+                AlertDialog.Builder builder = new AlertDialog.Builder(editCategory.this);
+                builder.setCancelable(true);
+                builder.setTitle("Delete Category?");
+                builder.setMessage("Are you sure you want to delete this category this action will delete all sets and flashcards within this category?");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                confirmedDelete();
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
 
-                deleteUnwantedLine("categories.txt", oldCat);
-                removeEmptyLines("categories.txt");
-                deleteUnwantedLine("flashcards.txt", Pattern.quote("{") + oldCat);
-                removeEmptyLines("flashcards.txt");
-                deleteUnwantedLine("sets.txt", oldCat + ",");
-                removeEmptyLines("sets.txt");
-                Intent intent = new Intent(editCategory.this, MainActivity.class);
-                startActivity(intent);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
     }
@@ -171,6 +181,21 @@ public class editCategory extends AppCompatActivity {
 
     public void home(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void confirmedDelete(){
+        TextView catName = findViewById(R.id.editcat);
+        CharSequence category = catName.getText();
+        String newCat = category.toString();
+        String oldCat = getIntent().getStringExtra("category");
+
+        deleteUnwantedLine("categories.txt", oldCat);
+        removeEmptyLines("categories.txt");
+        deleteUnwantedLine("flashcards.txt", Pattern.quote("{") + oldCat);
+        removeEmptyLines("flashcards.txt");
+        deleteUnwantedLine("sets.txt", oldCat + ",");
+        removeEmptyLines("sets.txt");
+        Intent intent = new Intent(editCategory.this, MainActivity.class);
         startActivity(intent);
     }
 }

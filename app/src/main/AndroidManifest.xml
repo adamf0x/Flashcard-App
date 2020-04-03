@@ -19,7 +19,6 @@
         <activity android:name=".viewFlashCards" />
         <activity android:name=".editCategory" />
         <activity android:name=".createFlashCard" />
-        <activity android:name=".deleteSet" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

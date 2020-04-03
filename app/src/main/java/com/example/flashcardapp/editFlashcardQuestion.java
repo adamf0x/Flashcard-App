@@ -1,7 +1,9 @@
 package com.example.flashcardapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -56,9 +58,26 @@ public class editFlashcardQuestion extends AppCompatActivity {
     }
 
     public void deleteCard(View view) {
-        deleteUnwantedLine("flashcards.txt", "{" + category + ","+ set + "," + questions.get(qnum) + "," + answers.get(ansnum) +"}");
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Delete Flashcard?");
+        builder.setMessage("Are you sure you want to delete this flashcard?");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                      confirmedDelete();
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void back(View view) {
@@ -145,5 +164,10 @@ public class editFlashcardQuestion extends AppCompatActivity {
                 }
             }
         }
+    }
+    public void confirmedDelete(){
+        deleteUnwantedLine("flashcards.txt", "{" + category + ","+ set + "," + questions.get(qnum) + "," + answers.get(ansnum) +"}");
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
