@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,6 +139,9 @@ public class studyFlashCardQuestion extends AppCompatActivity {
     }
 
     public void back(View view) {
-        finish();
+        Intent intent = new Intent(this,SelectSet.class);
+        intent.putExtra("category", value);
+        startActivity(intent);
+
     }
 }

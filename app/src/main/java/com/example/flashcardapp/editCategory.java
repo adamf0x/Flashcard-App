@@ -32,7 +32,6 @@ public class editCategory extends AppCompatActivity {
         Button rename = (Button) findViewById(R.id.renameButton);
         Bundle bundle = getIntent().getExtras();
         String cat = bundle.getString("category");
-        System.out.println(cat);
         editCat.setText(cat);
 
         rename.setOnClickListener(new View.OnClickListener() {
